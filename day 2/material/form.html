@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+  </head>
+  <body>
+    <form action="welcome.html">
+      <!--
+        label -> label for input (what data should I enter?)
+        name -> take data entered by user
+         -->
+
+      <!-- 01-Textbox -->
+      <label>Username : <input type="text" name="username" /> </label>
+
+      <!-- <label for="myname">enter your name</label>
+      <input type="text" id="myname"> -->
+
+      <hr />
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <!-- 02-password -->
+      <label>password : <input type="password" name="password" /></label>
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 03-Radio button -->
+      <!-- name  -> (relation between all radio buttons)
+            value -> save the choice data -->
+      <label>male <input type="radio" name="gender" value="male" /> </label>
+      <label>female <input type="radio" name="gender" value="female" /> </label>
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 04-checkbox -->
+      <label
+        >football <input type="checkbox" name="hobby" value="football"
+      /></label>
+      <label
+        >swimming <input type="checkbox" name="hobby" value="swimming"
+      /></label>
+      <label
+        >reading <input type="checkbox" name="hobby" value="reading"
+      /></label>
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 06-Drop down list -->
+      <label>
+        select country :
+        <select name="country">
+          <option value="Egypt">Egypt</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+        </select>
+      </label>
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+      <!-- 07-file upload -->
+      <input type="file" name="file" />
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 08-text area -->
+      <textarea name="textarea" rows="5" cols="5"></textarea>
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- HTML5 -->
+      <input type="date" name="date"/>
+      <input type="color" name="color"/>
+      <input type="number" name="number"/>
+      <input type="range" name="range" min="5" max="10"/>
+
+      <hr />
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 05-submit -->
+      <input type="submit" value="send data" />
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+      <!-- image input = submit -->
+      <input type="image" src="/assets/button.jpg" width="50" height="50" />
+
+      <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
+      <hr />
+
+      <!-- 05-reset -->
+      <input type="reset" value="reset my form" />
+    </form>
+  </body>
+</html>
