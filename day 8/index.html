@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tasks</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <h2>Task 1: Clone HTML Div</h2>
+    <div class="box" onclick="clonediv(this)"></div>
+    <hr>
+
+    <h2>Task 2: Simple Calculator</h2>
+    <div class="calculator">
+        <input type="text" id="result" class="screen" readonly>
+        <br>
+        <button class="btn" onclick="enternumber('1')">1</button>
+        <button class="btn" onclick="enternumber('2')">2</button>
+        <button class="btn" onclick="enternumber('3')">3</button>
+        <button class="btn" onclick="enternumber('+')">+</button>
+        <br>
+        <button class="btn" onclick="enternumber('4')">4</button>
+        <button class="btn" onclick="enternumber('5')">5</button>
+        <button class="btn" onclick="enternumber('6')">6</button>
+        <button class="btn" onclick="enternumber('-')">-</button>
+        <br>
+        <button class="btn" onclick="enternumber('7')">7</button>
+        <button class="btn" onclick="enternumber('8')">8</button>
+        <button class="btn" onclick="enternumber('9')">9</button>
+        <button class="btn" onclick="enternumber('*')">*</button>
+        <br>
+        <button class="btn" onclick="clearScreen()">C</button>
+        <button class="btn" onclick="enternumber('0')">0</button>
+        <button class="btn" onclick="enternumber('.')">.</button>
+        <button class="btn" onclick="enternumber('/')">/</button>
+        <br>
+        <button class="btn btn-wide" onclick="calculate()">=</button>
+    </div>
+    <hr>
+
+    <h2>Task 3: Text Style Customizer</h2>
+    <p id="text-para">Here is a paragraph of text that has various characteristics that can be changed dynamically.</p>
+    <div class="radio-group">
+        <label><input type="radio" name="font" onclick="changeFont('Arial')"> Arial</label>
+        <label><input type="radio" name="font" onclick="changeFont('Courier New')"> Courier</label>
+        <label><input type="radio" name="color" onclick="changeColor('red')"> Red</label>
+        <label><input type="radio" name="color" onclick="changeColor('blue')"> Blue</label>
+    </div>
+    <hr>
+
+    <h2>Task 4: DOM Nodes Modification (Teddy Bear)</h2>
+    <div id="header">
+        <img id="teddy-img" src="img/images.png" alt="hello" />
+    </div>
+    <div id="navigation">
+        <ul id="nav">
+            <li><strong>Memo</strong></li>
+            <li><a href="Articles.html">Articles</a></li>
+            <li><a href="Photos.html">Photos</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Clients.html">Clients</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <br>
+    <button onclick="transformPage()"> Fig. c</button>
+
+</body>
+
+</html>
