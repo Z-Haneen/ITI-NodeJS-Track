@@ -1,0 +1,119 @@
+// ==========================================
+// 1. Setup Database and Insert Data
+// ==========================================
+use FacultySystemV2;
+
+// Create Faculty Collection
+db.faculties.insertMany([
+  { _id: 1, name: "Computer Science", address: "Ismailia" },
+  { _id: 2, name: "Engineering", address: "Cairo" }
+]);
+
+// Create Course Collection
+db.courses.insertMany([
+  { _id: 101, name: "MongoDB", finalMark: 100 },
+  { _id: 102, name: "Node.js", finalMark: 100 },
+  { _id: 103, name: "C++", finalMark: 150 }
+]);
+
+// Create Student Collection with Relations
+db.students.insertMany([
+  {
+    _id: 1,
+    firstName: "Haneen",
+    lastName: "Zarifa",
+    isFired: false,
+    FacultyID: 1,
+    coursesList: [101, 102], // One-to-Many Array of Course IDs
+    courses: [
+      { CourseID: 101, grade: 95 },
+      { CourseID: 102, grade: 90 }
+    ]
+  },
+  {
+    _id: 2,
+    firstName: "Ahmed",
+    lastName: "Ali",
+    isFired: false,
+    FacultyID: 2,
+    coursesList: [102, 103],
+    courses: [
+      { CourseID: 102, grade: 80 },
+      { CourseID: 103, grade: 85 }
+    ]
+  }
+]);
+
+// ==========================================
+// 2. Display Student Full Name and Average Grade
+// ==========================================
+db.students.aggregate([
+  {
+    $project: {
+      _id: 0,
+      fullName: { $concat: ["$firstName", " ", "$lastName"] },
+      avgGrade: { $avg: "$courses.grade" }
+    }
+  }
+]);
+
+// ==========================================
+// 3. Sum of Final Mark for all courses in Course Collection
+// ==========================================
+db.courses.aggregate([
+  {
+    $group: {
+      _id: null,
+      totalFinalMarks: { $sum: "$finalMark" }
+    }
+  },
+  {
+    $project: { _id: 0 }
+  }
+]);
+
+// ==========================================
+// 4 (A). One-To-Many (Student & Course IDs) - Display Student Courses
+// ==========================================
+db.students.aggregate([
+  { $match: { firstName: "Haneen" } },
+  {
+    $lookup: {
+      from: "courses",
+      localField: "coursesList",
+      foreignField: "_id",
+      as: "studentCourses"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      fullName: { $concat: ["$firstName", " ", "$lastName"] },
+      "studentCourses.name": 1,
+      "studentCourses.finalMark": 1
+    }
+  }
+]);
+
+// ==========================================
+// 4 (B). Student & Faculty Relation using $lookup
+// ==========================================
+db.students.aggregate([
+  { $match: { firstName: "Haneen" } },
+  {
+    $lookup: {
+      from: "faculties",
+      localField: "FacultyID",
+      foreignField: "_id",
+      as: "facultyDetails"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      fullName: { $concat: ["$firstName", " ", "$lastName"] },
+      facultyName: { $arrayElemAt: ["$facultyDetails.name", 0] },
+      facultyAddress: { $arrayElemAt: ["$facultyDetails.address", 0] }
+    }
+  }
+]);
