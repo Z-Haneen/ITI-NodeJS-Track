@@ -16,8 +16,8 @@ app.use("/uploads", express.static("uploads"));
 app.use(morgan("dev"));
 app.use(cors());
 
-app.use(userRouter);
-app.use(authRouter);
+app.use('/api', userRouter);
+app.use('/api', authRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
