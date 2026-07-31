@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITI Node.js Final Project | Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid #334155;
+        }
+
+        h1 {
+            color: #38bdf8;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #064e3b;
+            color: #34d399;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #34d399;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        .endpoints {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #334155;
+        }
+
+        .badge {
+            background: #0284c7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .endpoint-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #1e293b;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        .endpoint-item:last-child {
+            border-bottom: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="status">
+            <div class="status-dot"></div> API Live & Connected to MongoDB Atlas
+        </div>
+        <h1>ITI Node.js Final Project</h1>
+        <p>Welcome to the RESTful API for the ITI Node.js Final Project. Featuring Authentication, Authorization (RBAC),
+            and File Uploads with ImageKit.</p>
+
+        <h3 style="color: #cbd5e1; margin-bottom: 12px; font-size: 1.1rem;">Available Endpoints:</h3>
+        <div class="endpoints">
+            <div class="endpoint-item"><span><span class="badge" style="background:#16a34a">POST</span> /signup</span>
+                <span>Create User</span></div>
+            <div class="endpoint-item"><span><span class="badge" style="background:#16a34a">POST</span> /login</span>
+                <span>Get JWT Token</span></div>
+            <div class="endpoint-item"><span><span class="badge" style="background:#2563eb">GET</span> /users</span>
+                <span>Protected Route</span></div>
+            <div class="endpoint-item"><span><span class="badge" style="background:#16a34a">POST</span> /users</span>
+                <span>Create Admin + Image</span></div>
+        </div>
+
+        <div class="footer">
+            Developed with ❤️ by <strong>Z-Haneen</strong> | ITI Node.js Course
+        </div>
+    </div>
+</body>
+
+</html>

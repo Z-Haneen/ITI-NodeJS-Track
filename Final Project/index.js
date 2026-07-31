@@ -10,6 +10,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const User = require("./model/user");
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use(morgan("dev"));
