@@ -5,7 +5,7 @@ const valudate = (schema) => {
     const body = req.body;
     const { error } = schema.validate(body);
     if (error) {
-      throw new AppError(error.details[0].message, 400);
+      return nexr(new AppError(error.details[0].message, 400));
     }
     next();
   };

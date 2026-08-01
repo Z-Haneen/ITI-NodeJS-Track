@@ -1,14 +1,37 @@
 const AppError = require("../utils/AppError");
-const User = require("../model/user");
 const Post = require("../model/post");
 
 const createPost = async (req, res, next) => {
-  const body = req.body;
-  const user = req.user;
-  const post = await Post.create({ title, content, author: user._id });
-  res.status(201).json({ message: "Post created successfully", post });
+  try {
+    const { title, content } = req.body;
+    const user = req.user;
+
+    if (!title || !content) {
+      return next(new AppError("Title and content are required", 400));
+    }
+
+    const imageUrl = req.images ? req.images[0] : null;
+
+    const post = await Post.create({
+      title,
+      content,
+      image: imageUrl,
+      author: user._id
+    });
+
+    res.status(201).json({ message: "Post created successfully", post });
+  } catch (error) {
+    next(error);
+  }
 };
 
-// when get post return user data (name , email and image)
+const getAllPosts = async (req, res, next) => {
+  try {
+    const posts = await Post.find().populate("author", "name email image");
+    res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
 
-module.exports = { createPost };
+module.exports = { createPost, getAllPosts };
