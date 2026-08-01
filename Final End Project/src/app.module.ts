@@ -1,0 +1,35 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+import { GroupsModule } from './groups/groups.module';
+
+@Module({
+    imports: [
+        ConfigModule.forRoot({ isGlobal: true }),
+        MongooseModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => ({
+                uri: configService.get<string>('MONGO_URI'),
+            }),
+            inject: [ConfigService],
+        }),
+        JwtModule.registerAsync({
+            global: true,
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => ({
+                secret: configService.get<string>('JWT_SECRET'),
+                signOptions: { expiresIn: '7d' },
+            }),
+            inject: [ConfigService],
+        }),
+        AuthModule,
+        UsersModule,
+        PostsModule,
+        GroupsModule,
+    ],
+})
+export class AppModule { }
