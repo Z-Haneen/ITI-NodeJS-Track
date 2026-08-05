@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-container {
+            margin-top: 20px;
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Showing pics</h2>
+    <div class="gallery-container">
+        <button onclick="prevPic()">Previous</button>
+        <button onclick="startSlideShow()">SlideShow</button>
+        <button onclick="stopSlideShow()">Stop</button>
+        <button onclick="nextPic()">Next</button>
+        <br>
+        <img id="gallery-img" src="img/images.png" alt="Gallery">
+    </div>
+    <script>
+        var images = ["img/ChestXray.png", "img/images.png", "img/ChestXray.png"];
+        var currentIndex = 0;
+        var slideInterval;
+        var imgElement = document.getElementById("gallery-img");
+
+        function nextPic() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                imgElement.src = images[currentIndex];
+            }
+        }
+
+        function prevPic() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                imgElement.src = images[currentIndex];
+            }
+        }
+
+        function startSlideShow() {
+            if (!slideInterval) {
+                slideInterval = setInterval(function () {
+                    currentIndex++;
+                    if (currentIndex >= images.length) {
+                        currentIndex = 0;
+                    }
+                    imgElement.src = images[currentIndex];
+                }, 2000);
+            }
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
+    </script>
+</body>
+
+</html>
